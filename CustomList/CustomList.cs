@@ -16,16 +16,22 @@ namespace CustomList
         //Constructor
         public CustomList()
         {
-            //capacity = 
-            //count =
-            //items = 
+            capacity = 4;
+            count = 0;
+            T[] items = new T[capacity];
         }
 
         //Member Methods (CAN DO)
         public void Add(T item)
         {
             //'item' parameter should be added to internal 'items' array
-            //if items array is at capacity, double capacity and create new array
+            
+            T[] items = new T[item];
+            //if items array is at capacity, doublejjj capacity and create new array
+            if (items >= capacity) 
+            {
+                capacity *= 2;
+            }
             //transfer all items to new array
         }
 
