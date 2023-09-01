@@ -17,10 +17,23 @@ namespace CustomListTests
             CustomList<string> myList = new CustomList<string>();
             myList.Add("A");
             
+            
             //Act
             myList.Remove("A");
             //Assert
-            Assert.AreEqual(myList[0], "");
+            Assert.AreEqual(null, myList[0]);
+        }
+
+        [TestMethod]
+
+        public void RemoveMethod_RemoveOneItem_MethodReturnsTrue()
+        {
+
+        }
+        [TestMethod]
+        public void RemoveMethod()
+        {
+
         }
     }
 }

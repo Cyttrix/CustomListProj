@@ -13,33 +13,98 @@ namespace CustomList
         private int capacity;
         private int count;
 
+        public T this[int index]
+        {
+            get
+            {
+                return items[index];
+            }
+            set
+            {
+                items[index] = value;
+            }
+        }
+
+        public int Count 
+        {
+            get 
+            { 
+                return count; 
+            } 
+        }
+        public int Capacity 
+        {
+            get
+            {
+                return capacity; 
+            } 
+        }
         //Constructor
         public CustomList()
         {
             capacity = 4;
             count = 0;
-            T[] items = new T[capacity];
+            items = new T[capacity];
         }
 
         //Member Methods (CAN DO)
         public void Add(T item)
         {
             //'item' parameter should be added to internal 'items' array
-            
-            T[] items = new T[item];
+
+
             //if items array is at capacity, doublejjj capacity and create new array
-            if (items >= capacity) 
+
+            //transfer all items to new array
+            if (count < capacity)
+            {
+                items[count] = item;
+                count++;
+            }
+            else
             {
                 capacity *= 2;
+                T[] temporaryArray = new T[capacity];
+                for (int i = 0; i < count; i++)
+                {
+                    temporaryArray[i] = items[i];
+                }
+                temporaryArray[count] = item;
+                items = temporaryArray;
+
             }
-            //transfer all items to new array
+           
+
         }
 
         public bool Remove(T item)
         {
-            //If 'item' exists in the 'items' array, remove its first instance
-            //Any items coming after the removed item should be shifted down so there is no empty index.
-            //If 'item' was removed, return true. If no item was removed, return false.
+            if(count == 1)
+            {
+                items[0] = default(T);
+            }
+            else
+            {
+                //If 'item' exists in the 'items' array, remove its first instance
+                //Any items coming after the removed item should be shifted down so there is no empty index.
+                //If 'item' was removed, return true. If no item was removed, return false.
+                T[] temporaryArray = new T[capacity];
+                for (int i = 0, j = 0; i < count; i++, j++)
+                {
+
+                    if (items[i].Equals(item))
+                    {
+                        j--;
+                    }
+                    else
+                    {
+                        temporaryArray[j] = items[i];
+                    }
+                }
+          
+            }
+            
+
             return false;
         }
 

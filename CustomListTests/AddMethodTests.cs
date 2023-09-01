@@ -17,6 +17,7 @@ namespace CustomListTests
             Assert.AreEqual("Hello", myList[0]);
 
         }
+        [TestMethod]
         public void AddMethod_AddTwoItems_SecondItemAtIndexOne()
         {
             //Arrange
@@ -25,9 +26,9 @@ namespace CustomListTests
             myList1.Add("Hello");
             myList1.Add("World");
             //Assert
-            Assert.AreEqual("World", myList[1]);
+            Assert.AreEqual("World", myList1[1]);
         }
-
+        [TestMethod]
         public void AddMethod_AddThreeItems_CountIncreases()
         {
             //Arrange
@@ -39,10 +40,10 @@ namespace CustomListTests
             myList.Add("C");
 
             //Assert
-            Assert.AreEqual(myList.count, 3);
+            Assert.AreEqual(myList.Count, 3);
         }
-
-        public void AddMethod_AddFourItems_CapacityIncreases()
+        [TestMethod]
+        public void AddMethod_AddFiveItems_CapacityIncreases()
         {
             //Arrange
             CustomList<string> myList = new CustomList<string>();
@@ -51,19 +52,24 @@ namespace CustomListTests
             myList.Add("B");
             myList.Add("C");
             myList.Add("D");
+            myList.Add("E");
             //Assert
-            Assert.AreEqual(myList.capacity, 8);
+            Assert.AreEqual(myList.Capacity, 8);
         }
-
+        [TestMethod]
         public void AddMethod_AddOneItemCapacityIncreases_OriginalItemRemains()
         {
             //Arrange
             CustomList<string> myList = new CustomList<string>();
             //Act
             myList.Add("A");
-            myList.capacity *= 2;
+            myList.Add("B");
+            myList.Add("C");
+            myList.Add("D");
+            myList.Add("E");
+
             //Assert
-            Assert.AreEqual(myList.capacity, 8);
+           
             Assert.AreEqual(myList[0], "A");
         }
     }
