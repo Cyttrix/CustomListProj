@@ -79,40 +79,77 @@ namespace CustomList
 
         public bool Remove(T item)
         {
-            if(count == 1)
+            bool valueRemoved = false;
+            //If 'item' exists in the 'items' array, remove its first instance
+            //Any items coming after the removed item should be shifted down so there is no empty index.
+            //If 'item' was removed, return true. If no item was removed, return false.
+            if (count == 1)
             {
                 items[0] = default(T);
+                valueRemoved = true;
             }
             else
             {
-                //If 'item' exists in the 'items' array, remove its first instance
-                //Any items coming after the removed item should be shifted down so there is no empty index.
-                //If 'item' was removed, return true. If no item was removed, return false.
+
                 T[] temporaryArray = new T[capacity];
                 for (int i = 0, j = 0; i < count; i++, j++)
                 {
 
-                    if (items[i].Equals(item))
+                    if (items[i].Equals(item) && valueRemoved == false)
                     {
                         j--;
+                        valueRemoved = true;
+                      
                     }
                     else
                     {
                         temporaryArray[j] = items[i];
+
                     }
                 }
-          
-            }
-            
+                if (valueRemoved == true)
+                {
+                    count--;
+                }
+                items = temporaryArray;
 
-            return false;
+            }
+
+            
+            return valueRemoved;
+            
         }
 
         public override string ToString()
         {
             //returns a single string that contains all items from array
-            return "";
+
+            string returnValue = null;
+
+            foreach (T item in items)
+            {
+
+                if (item is int)
+                {
+                    returnValue += item.ToString();
+                }
+                else if (item is string)
+                {
+                    returnValue += item;
+                }
+                else if (item == null)
+                {
+                    return returnValue;
+
+                }
+                
+            }
+            return returnValue;
         }
+
+            
+           
+        
 
         public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
         {
