@@ -44,7 +44,7 @@ namespace CustomListTests2
             //Act
             myList.ToString();
             //Assert
-            Assert.AreEqual(null, myList.ToString);
+            Assert.AreEqual("", myList.ToString());
         }
     }
 }

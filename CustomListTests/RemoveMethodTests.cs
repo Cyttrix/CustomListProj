@@ -46,7 +46,7 @@ namespace CustomListTests
             //Act
             myList.Remove("C");
             //Assert
-            Assert.AreEqual(myList.Count, 1);
+            Assert.AreEqual(myList.Count, 0);
         }
         [TestMethod]
         

@@ -70,6 +70,7 @@ namespace CustomList
                     temporaryArray[i] = items[i];
                 }
                 temporaryArray[count] = item;
+                count++;
                 items = temporaryArray;
 
             }
@@ -87,6 +88,7 @@ namespace CustomList
             {
                 items[0] = default(T);
                 valueRemoved = true;
+                count--;
             }
             else
             {
@@ -124,26 +126,13 @@ namespace CustomList
         {
             //returns a single string that contains all items from array
 
-            string returnValue = null;
+            string returnValue = "";
 
-            foreach (T item in items)
+            for (int i= 0; i < count; i++)
             {
-
-                if (item is int)
-                {
-                    returnValue += item.ToString();
-                }
-                else if (item is string)
-                {
-                    returnValue += item;
-                }
-                else if (item == null)
-                {
-                    return returnValue;
-
-                }
-                
+                returnValue += items[i].ToString();
             }
+            
             return returnValue;
         }
 
@@ -154,13 +143,35 @@ namespace CustomList
         public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
         {
             //returns a single CustomList<T> that contains all items from firstList and all items from secondList 
-            return null;
+            CustomList<T> finalList = new CustomList<T>();
+
+            for (int i = 0; i < firstList.Count; i++)
+            {
+                finalList.Add(firstList[i]);
+            }
+
+            for (int i = 0; i < secondList.Count; i++)
+            {
+                finalList.Add(secondList[i]);
+            }
+            return finalList;
         }
 
         public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
         {
             //returns a single CustomList<T> with all items from firstList, EXCEPT any items that also appear in secondList
-            return null;
+            CustomList<T> finalList = new CustomList<T>();
+
+            for (int i= 0; i < firstList.Count; i++)
+            {
+                finalList.Add(firstList[i]);
+            }
+
+            for (int i = 0; i < secondList.Count; i++)
+            {
+                finalList.Remove(secondList[i]);
+            }
+            return finalList;
         }
 
 
